@@ -540,6 +540,7 @@ static simple_spinlock_t buffer_debug_lock = SIMPLE_SPINLOCK_INITIALIZER;
       if (r < 0) {
 	bdout << "raw_pipe: error setting nonblocking flag on temp pipe: "
 	      << cpp_strerror(r) << bendl;
+	close_pipe(tmpfd);
 	throw error_code(r);
       }
       r = set_pipe_size(tmpfd, len);
